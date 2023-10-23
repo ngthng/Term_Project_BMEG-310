@@ -17,7 +17,9 @@ data_rna = read.csv("RNAseq_LIHC.csv", header = TRUE)
 head(data_rna)
 
 ```
+
 Changing the "." to "-" in patient ID of data_rna
+<<<<<<< HEAD
 
 ```{r}
 for (i in 2:length(colnames(data_rna))) {
@@ -31,6 +33,18 @@ for (i in 2:length(colnames(data_rna))) {
 
 ```{r}
 uni_rna<-gsub("\\.", "-", colnames(data_rna[2:425]))
+=======
+```{r}
+
+
+for (i in length(colnames(data_rna))){
+  converted = chartr(".", "-", colnames(data_rna)[i])
+  strin = toString(colnames(data_rna)[i])
+  print(strin)
+}
+
+# head(data_rna)
+>>>>>>> 7fc494afecdd1e35a49137599fe2e0331231dd5c
 ```
 
 ```{r}
