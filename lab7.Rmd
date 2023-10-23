@@ -47,4 +47,4 @@ cat("Number of unique patient in mutation data:", length(unique_patient_mutation
 unique_patient <- intersect(unqiue_patient_clinical, unqiue_patient_mutation)
 unqiue <- intersect(unique_patient, )
 ```
-
+ q
