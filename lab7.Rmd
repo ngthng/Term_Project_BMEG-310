@@ -1,52 +1,24 @@
 ---
 title: "lab7"
-author: "Theo-60985751"
+author: "Theo-60985751, Hannah Yeung-88788427, Jingxuan Chen-85741635"
 date: "2023-10-23"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 Reading the data
 ```{r}
 data_clinical = read.table("data_clinical_patient.txt", header = TRUE, sep = "\t")
-head(data_clinical)
 
 data_mutation = read.table("data_mutations.txt", header = TRUE, sep = "\t")
-head(data_mutation)
 
 data_rna = read.csv("RNAseq_LIHC.csv", header = TRUE)
-head(data_rna)
+
 
 ```
 
-Changing the "." to "-" in patient ID of data_rna
-<<<<<<< HEAD
-
-```{r}
-for (i in 2:length(colnames(data_rna))) {
-  col_name <- colnames(data_rna)[i]
-  new_col_name <- gsub("\\.", "-", col_name)
-  colnames(data_rna)[i] <- new_col_name
-  
-}
- 
-```
-
-```{r}
-uni_rna<-gsub("\\.", "-", colnames(data_rna[2:425]))
-=======
-```{r}
-
-
-for (i in length(colnames(data_rna))){
-  converted = chartr(".", "-", colnames(data_rna)[i])
-  strin = toString(colnames(data_rna)[i])
-  print(strin)
-}
-
-# head(data_rna)
->>>>>>> 7fc494afecdd1e35a49137599fe2e0331231dd5c
-```
-
+Finding the unique patients
 ```{r}
 unique_patient_clinical = unique(data_clinical$PATIENT_ID)
 unique_patient_rna = unique(colnames(data_rna))
@@ -57,8 +29,27 @@ cat("Number of unique patient in clinical data:", length(unique_patient_clinical
 cat("Number of unique patient in mutation data:", length(unique_patient_mutation),"\n", sep = " ")
 
 ```
+
+
+Changing the "." to "-" in patient ID of data_rna
+
 ```{r}
-unique_patient <- intersect(unqiue_patient_clinical, unqiue_patient_mutation)
-unqiue <- intersect(unique_patient, )
+
+uni_rna<-gsub("\\.", "-", colnames(data_rna[2:425]))
+
+shortened_rna = substr(uni_rna, start = 1, stop = 12)
+shortened_mutation = substr(unique_patient_mutation, start = 1, stop = 12)
+ 
 ```
- q
+
+Finding the common patients
+
+```{r}
+common_names1 <- intersect(unique_patient_clinical, shortened_mutation)
+common_names2 <- intersect(common_names1, shortened_rna)
+
+# unique_patient_clinical
+cat("Number of unique patients that we have ALL the clinical,
+    mutations, and RNAseq data:", length(common_names2), sep = " ")
+```
+
