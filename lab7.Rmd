@@ -1,0 +1,45 @@
+---
+title: "lab7"
+author: "Theo-60985751"
+date: "2023-10-23"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Reading the data
+```{r}
+data_clinical = read.table("data_clinical_patient.txt", header = TRUE, sep = "\t")
+head(data_clinical)
+
+data_mutation = read.table("data_mutations.txt", header = TRUE, sep = "\t")
+head(data_mutation)
+
+data_rna = read.csv("RNAseq_LIHC.csv", header = TRUE)
+
+
+```
+Changing the "." to "-" in patient ID of data_rna
+```{r}
+# head(data_rna)
+
+for (i in colnames(data_rna)){
+  print(typeof(i))
+  
+}
+head(data_rna)
+```
+
+```{r}
+unique_patient_clinical = unique(data_clinical$PATIENT_ID)
+unique_patient_rna = unique(colnames(data_rna))
+unique_patient_mutation = unique(data_mutation$Tumor_Sample_Barcode)
+
+cat("Number of unique patient in RNAseq data:", length(unique_patient_rna),"\n", sep = " ")
+cat("Number of unique patient in clinical data:", length(unique_patient_clinical),"\n", sep = " ")
+cat("Number of unique patient in mutation data:", length(unique_patient_mutation),"\n", sep = " ")
+
+```
+
