@@ -21,15 +21,18 @@ data_rna = read.csv("RNAseq_LIHC.csv", header = TRUE)
 
 
 ```
+
 Changing the "." to "-" in patient ID of data_rna
 ```{r}
-# head(data_rna)
 
-for (i in colnames(data_rna)){
-  print(typeof(i))
-  
+
+for (i in length(colnames(data_rna))){
+  converted = chartr(".", "-", colnames(data_rna)[i])
+  strin = toString(colnames(data_rna)[i])
+  print(strin)
 }
-head(data_rna)
+
+# head(data_rna)
 ```
 
 ```{r}
